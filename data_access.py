@@ -12,7 +12,6 @@ def fetch_by_id(watch_id: str) -> dict:
         with open('test_data.csv', newline='') as test_data_file:
             reader = csv.DictReader(test_data_file)
             cached_data = [row for row in reader]
-        print(cached_data)
 
     for watch in cached_data:
         if watch['id'] == watch_id:
