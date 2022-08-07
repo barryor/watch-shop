@@ -42,3 +42,10 @@ end
 Buisness Logic-->>-API Routing: Total Price
 API Routing-->>-Client: JSON Reponse with Total Price
 ```
+# TODO
+Next steps for further development.
+
+* API level testing
+* Add logging to the application to support debug
+* Add token based authentication to the API
+* Enable https for encryption
