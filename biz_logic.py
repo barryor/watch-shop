@@ -15,11 +15,15 @@ def calc_watch_price(data: dict, watch_count):
         total_item_price = (watch_count % discount_item_count) * int(data['unit_price'])
         return total_item_price + total_discount_item_price
 
+
 def calculate_total(watch_ids: list):
     watch_id_counts = {watch_id: watch_ids.count(watch_id) for watch_id in watch_ids}
     total_price = 0
     for watch_id, count in watch_id_counts.items():
         data = fetch_by_id(watch_id)
-        total_price += calc_watch_price(data, count)
+        if data is None:
+            return None
+        else:
+            total_price += calc_watch_price(data, count)
 
     return total_price

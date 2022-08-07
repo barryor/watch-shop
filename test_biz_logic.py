@@ -58,6 +58,9 @@ class TestFullCalculation(TestCase):
     def test_discounted_items(self):
         self.assertEqual(320, calculate_total(['001', '001', '001', '002', '002']))
 
+    def test_invalid_request(self):
+        self.assertIsNone(calculate_total(['999']))
+
 
 if __name__ == '__main__':
     unittest.main()
