@@ -1,7 +1,8 @@
 import unittest
 from unittest import TestCase
-from biz_logic import calc_watch_price  # testing inside the module
+from biz_logic import calc_watch_price  # Testing inside the module
 from biz_logic import calculate_total  # Testing the interface
+from biz_logic import MAX_ORDER_SIZE
 
 
 class TestNoDiscountSingleWatch(TestCase):
@@ -60,6 +61,13 @@ class TestFullCalculation(TestCase):
 
     def test_invalid_request(self):
         self.assertIsNone(calculate_total(['999']))
+
+    def test_no_data(self):
+        self.assertIsNone(calculate_total(None))
+
+    def test_too_many_items(self):
+        big_list = ['001' for n in range(0, MAX_ORDER_SIZE + 1)]
+        self.assertIsNone(calculate_total(big_list))
 
 
 if __name__ == '__main__':
