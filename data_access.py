@@ -1,17 +1,20 @@
 # Abstraction of Data Access Layer
+import csv
 
 __all__ = ['fetch_by_id']
 
-test_data = [
-    {'id': '001', 'name': 'Rolex', 'unit_price': '100', 'discount': '3 for 200'},
-    {'id': '002', 'name': 'Michael Kors', 'unit_price': '80', 'discount': '2 for 120'},
-    {'id': '003', 'name': 'Swatch', 'unit_price': '50'},
-    {'id': '004', 'name': 'Casio', 'unit_price': '30'}
-]
+cached_data = None
 
 
 def fetch_by_id(watch_id: str) -> dict:
-    for watch in test_data:
+    global cached_data
+    if cached_data is None:
+        with open('test_data.csv', newline='') as test_data_file:
+            reader = csv.DictReader(test_data_file)
+            cached_data = [row for row in reader]
+        print(cached_data)
+
+    for watch in cached_data:
         if watch['id'] == watch_id:
             return watch
     return None
