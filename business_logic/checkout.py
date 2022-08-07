@@ -1,5 +1,5 @@
 # Provides the checkout business logic to teh application
-from data_access import fetch_by_id
+from data_layer.pricing import fetch_by_id
 
 __all__ = ['calculate_total']
 
@@ -21,7 +21,7 @@ def calculate_total(watch_ids: list):
     if watch_ids is None:
         return None
 
-    # Limit the number watches we can order to protect the data layer
+    # Limit the number watches we can order to protect the data_layer layer
     if len(watch_ids) > MAX_ORDER_SIZE:
         return None
 

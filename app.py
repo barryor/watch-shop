@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from biz_logic import calculate_total
+from business_logic import checkout
 
 app = Flask(__name__)
 
@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/checkout', methods=['POST'])
 def checkout():
     data = request.get_json()
-    total_price = calculate_total(data)
+    total_price = checkout.calculate_total(data)
 
     if total_price is None:
         return jsonify({'error': 'checkout-0001',
